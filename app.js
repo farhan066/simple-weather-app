@@ -6,6 +6,7 @@ const cityName = document.querySelector(".cityName")
 
 const search_box = document.querySelector(".search_box");
 const search_btn = document.querySelector(".search_btn");
+const location_btn = document.querySelector(".location_btn");
 
 const error = document.querySelector(".errorBox")
 //====API====/
@@ -33,9 +34,9 @@ const getWeather = (city) => {
 
         .then(result => {
 
-            if(result.error == "An unexpected error occured."){
+            if (result.error == "An unexpected error occured.") {
                 error.classList.add("showError")
-                setTimeout(()=>{
+                setTimeout(() => {
                     error.classList.remove("showError")
                 }, 2000);
                 return;
@@ -45,19 +46,57 @@ const getWeather = (city) => {
             temp.innerHTML = result.temp
             humidity.innerHTML = result.humidity
             wind.innerHTML = result.wind_speed
-            
+
         })
 
         .catch(error => console.log(error))
 
 }
 
-search_btn.addEventListener("click", (e)=>{
+
+
+search_btn.addEventListener("click", (e) => {
     e.preventDefault()
     getWeather(search_box.value)
 })
 
 
+location_btn.addEventListener("click", (e) => {
+    e.preventDefault()
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+            const { latitude, longitude } = position.coords;
+
+            fetch(`https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?lat=${latitude}&lon=${longitude}`, header)
+
+                .then(response => {
+                    return response.json()
+                })
+
+                .then(result => {
+
+                    if (result.error == "An unexpected error occured.") {
+                        error.classList.add("showError")
+                        setTimeout(() => {
+                            error.classList.remove("showError")
+                        }, 2000);
+                        return;
+                    }
+                    cityName.innerHTML = "*Current Location*"
+
+                    temp.innerHTML = result.temp
+                    humidity.innerHTML = result.humidity
+                    wind.innerHTML = result.wind_speed
+
+                })
+
+                .catch(error => console.log(error))
+        })
+
+    } else {
+        alert("Your browser does not support geolocation")
+    }
+})
 
 
 console.warn("This project is done by Farhan")
