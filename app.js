@@ -32,7 +32,6 @@ const getWeather = (city) => {
         })
 
         .then(result => {
-            console.log(result)
 
             if(result.error == "An unexpected error occured."){
                 error.classList.add("showError")
@@ -46,9 +45,10 @@ const getWeather = (city) => {
             temp.innerHTML = result.temp
             humidity.innerHTML = result.humidity
             wind.innerHTML = result.wind_speed
+            
         })
 
-        .catch(error => console.log("wtf"))
+        .catch(error => console.log(error))
 
 }
 
