@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Weather App</title>
+</head>
+<body>
+    <div class="container">
+        <header class="card">
+            <h1 class="logo">Simple Weather App</h1>
+            <div class="searchBox">
+                <form>
+                    <input class="search_box" type="text" placeholder="Chittagong">
+                    <button class="search_btn" type="submit">Search</button>
+                    <button class="location-btn" type="submit">Weather of Current Location</button>
+                </form>
+            </div>
+        </header>
+
+        <div class="card cityNameHolder">
+            <p class="small">Weather of</p>
+            <h2 class="cityName">. . .</h2>
+        </div>
+
+        <div class="card">
+            <div class="small"><p>Temperature</p></div>
+            <h2><span class="temp">0</span> &#176;C</h2>
+        </div>
+        <div class="card">
+            <div class="small"><p>Humidity</p></div>
+            <h2><span class="humidity">0</span> %</h2>
+        </div>
+        <div class="card">
+            <div class="small"><p>Wind Speed</p></div>
+            <h2><span class="wind">0</span> km/h</h2>
+        </div>
+    </div>
+
+    <div class="errorBox">
+        <p>Please enter a valid city</p>
+    </div>
+    <!-- =====javascript=== -->
+    <script src="app.js"></script>
+</body>
+</html>
